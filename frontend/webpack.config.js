@@ -25,8 +25,8 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({ //this is doing some sort of optimization
        
-      'process.env.NODE_ENV' : JSON.stringify('production')
-      
+      //'process.env.NODE_ENV' : JSON.stringify('production')
+      'process.env.NODE_ENV' : JSON.stringify('development')
       /*"process.env": {
         // This has effect on the react lib size
         NODE_ENV: JSON.stringify("production"),
