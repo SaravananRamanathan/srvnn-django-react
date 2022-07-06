@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
+  devtool: 'eval-source-map',
   entry: "./src/index.js", //entery of our code
   output: {
     path: path.resolve(__dirname, "./static/frontend"), //output path
@@ -23,10 +24,13 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({ //this is doing some sort of optimization
-      "process.env": {
+       
+      'process.env.NODE_ENV' : JSON.stringify('production')
+      
+      /*"process.env": {
         // This has effect on the react lib size
         NODE_ENV: JSON.stringify("production"),
-      },
+      },*/
     }),
   ],
 };
