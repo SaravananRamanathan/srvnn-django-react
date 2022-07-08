@@ -1,8 +1,14 @@
+//entery point
+
 import React, {Component} from 'react';
 import {render} from "react-dom";
 import HomePage from "./HomePage"
 import RoomJoinPage from './RoomJoinPage';
 import CreateRoomPage from './CreateRoomPage';
+
+
+
+
 //compnent 1
 export default class App extends Component{
     constructor(props){
