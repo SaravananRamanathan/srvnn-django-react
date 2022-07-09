@@ -69,7 +69,7 @@ function CreateRoomPage(props){
     }
         return(
         /*<p>Hello testing craete room page</p>*/
-        <Box sx={{ width: '100%' }}>
+        /*<Box sx={{ width: '100%'}}>*/
             <Grid container direction={'row'} spacing={1}>
                 <Grid item xs={12} align="center">
                     <Typography component='h4' variant="h4">
@@ -131,7 +131,7 @@ function CreateRoomPage(props){
                     </Button>
                 </Grid>
             </Grid>
-        </Box>
+        /*</Box>*/
         );
 }
 export default CreateRoomPage

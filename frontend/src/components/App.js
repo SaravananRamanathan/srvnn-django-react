@@ -17,7 +17,9 @@ export default class App extends Component{
     render(){
         //must be one element to return ,,in here we have multiple element with in 1 parent element div
         return(
+            <div className="center">
             <HomePage />
+            </div>
         );
     }
 }
