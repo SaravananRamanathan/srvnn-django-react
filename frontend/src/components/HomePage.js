@@ -8,10 +8,12 @@ export default class HomePage extends Component{
     constructor(props){
         super(props);//calling parent construct
     }
+    
     CustomRoomWrapper = () => {
-  const { roomCode } = useParams();
-  return <Room item={roomCode} />;
-};
+        const { roomCode } = useParams();
+        return <Room roomCode={roomCode} />;
+    };
+
     render(){
         return(
         //<p>this is the home page</p> 

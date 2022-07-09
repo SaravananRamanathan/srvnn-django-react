@@ -4,17 +4,33 @@ import {useMatch} from 'react-router-dom';
 function Room(props){
     //const match = useMatch();
     console.log(props)
-    const [votesToSkip] = useState(1);
-    //const[votesToSkip,setVotes]=useState(1);
+    const [votesToSkip,setVotesToSkip] = useState(1);
+    //const[votesToSkip,setVotes]=useState(1); //here setVotes is the function that is going to be used to alter this state value afterwards
     //later can use setVotes to set the votesToSkip values
     // example : setVotes(votesToSkip+1)
-    const [guestCanPause] = useState(true);
-    const [isHost] = useState(false);
+    const [guestCanPause,setGuestCanPause] = useState(true);
+    const [isHost,setIsHost] = useState(false);
     const printFalse="False";
     const printTrue="True";
+    
+    // roomDetailsGuestCanPuase=guestCanPause;
+    // roomDetailIsHost=isHost;
+    // roomDetailVotesToSkip=votesToSkip;
+
+    function getRoomDetails(){
+        fetch('/api/get-room'+'?code='+props.roomCode).then((response)=>
+            response.json()
+        ).then((data)=>{
+            console.log(data)
+            setGuestCanPause(data.guest_can_pause);
+            setVotesToSkip(data.votes_to_skip);
+            setIsHost(data.is_host);
+        });
+    }
+    getRoomDetails();
     return (
         <div>
-            <h3>Room-code: {props.item} </h3>
+            <h3>Room-code: {props.roomCode} </h3>
             <p>Votes: {votesToSkip}</p>
             <p>Guest can pause: {guestCanPause===false?printFalse:printTrue}</p>
             <p>Host?: {isHost===false?printFalse:printTrue}</p>

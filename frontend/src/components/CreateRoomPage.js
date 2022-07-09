@@ -10,10 +10,11 @@ import Radio from "@mui/material/Radio"
 import RadioGroup from  "@mui/material/RadioGroup"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Box from '@mui/material/Box'
+import { useNavigate, useLocation, useParams } from 'react-router-dom'
 //import Grid from '@mui/material/Grid'
 //import Typography from '@mui/material/Typography'
 
-export default class CreateRoomPage extends Component{
+class CreateRoomPage extends Component{
     defaultVotes=1;
     constructor(props){
         super(props);//calling parent construct
@@ -50,7 +51,21 @@ export default class CreateRoomPage extends Component{
         };
         fetch("/api/create-room/",requestOptions)
             .then((response) => response.json())
-            .then((data)=> console.log(data));
+            .then((data)=>{
+                console.log(data);
+    
+
+
+                //navigate = useNavigate();
+                //const { navigate } = useNavigate();
+                //console.log(navigate);
+                //navigate('/room/'+data.code);
+                console.log(this.props)
+                this.props.history.push('/room/'+data.code)
+                //const { history } = this.props;
+                //history.push("/room/"+data.code);
+                //this.props.history.push('/room/'+data.code);
+            });
     }
     render(){
         return(
@@ -121,3 +136,4 @@ export default class CreateRoomPage extends Component{
         );
     }
 }
+export default CreateRoomPage
