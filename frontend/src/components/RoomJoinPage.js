@@ -1,8 +1,9 @@
 import React, {Component,useState} from 'react'
 import { TextField,Button,Grid,Typography } from '@mui/material';
 import {Link} from 'react-router-dom';
-
+import { useNavigate} from 'react-router-dom'
 function RoomJoinPage(props){
+    const navigate = useNavigate();
     /*constructor(props){
         super(props);//calling parent construct
         this.state={
@@ -14,7 +15,7 @@ function RoomJoinPage(props){
     }*/
     
     const [roomCode,setRoomCode]=useState("");
-    const [error] = useState("");
+    const [error,setError] = useState("");
 
     function _handleTextFieldChange(e){
         //console.log(e.target.value)//test ok.
@@ -27,6 +28,24 @@ function RoomJoinPage(props){
     function _roomButtonPressed(){
         //console.log(this.state.roomCode)
         console.log(roomCode)
+        const requestOptions={
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({
+                code:roomCode
+            })
+        };
+        fetch('/api/join-room/',requestOptions).then((response)=>{
+            if(response.ok){
+                //valid case
+                navigate('/room/'+roomCode);        
+            }
+            else{
+                setError("Room Not Found");
+            }
+        }).catch((error)=>{
+            console.log(error);
+        });
     }
 
         return(
