@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
+import React, {Component,useState} from 'react'
 import { TextField,Button,Grid,Typography } from '@mui/material';
 import {Link} from 'react-router-dom';
 
-export default class RoomJoinPage extends Component{
-    constructor(props){
+function RoomJoinPage(props){
+    /*constructor(props){
         super(props);//calling parent construct
         this.state={
             roomCode:"",
@@ -11,20 +11,24 @@ export default class RoomJoinPage extends Component{
         };
         this._handleTextFieldChange = this._handleTextFieldChange.bind(this);
         this._roomButtonPressed = this._roomButtonPressed.bind(this);
-    }
+    }*/
     
-     _handleTextFieldChange(e){
+    const [roomCode,setRoomCode]=useState("");
+    const [error] = useState("");
+
+    function _handleTextFieldChange(e){
         //console.log(e.target.value)//test ok.
-        this.setState({
+        /*this.setState({
             roomCode:e.target.value,
-        });
+        });*/
+        setRoomCode(e.target.value);
     }
 
-    _roomButtonPressed(){
-        console.log(this.state.roomCode)
+    function _roomButtonPressed(){
+        //console.log(this.state.roomCode)
+        console.log(roomCode)
     }
 
-    render(){
         return(
             <Grid container spacing={1}>
                 <Grid item xs={12} align="center">
@@ -34,13 +38,13 @@ export default class RoomJoinPage extends Component{
                 </Grid>
                 <Grid item xs={12} align="center">
                     <TextField
-                        error={!!this.state.error}
+                        error={!!error}
                         label="Code"
                         placeholder="Enter a room code"
-                        value={this.state.roomCode}
-                        helperText={this.state.error}
+                        value={roomCode}
+                        helperText={error}
                         variant="outlined"
-                        onChange={this._handleTextFieldChange}
+                        onChange={_handleTextFieldChange}
                     >
 
                     </TextField>
@@ -49,7 +53,7 @@ export default class RoomJoinPage extends Component{
                     <Button 
                         variant="contained" 
                         color="primary"
-                        onClick={this._roomButtonPressed} 
+                        onClick={_roomButtonPressed} 
                         >
                         Enter Room
                     </Button>
@@ -65,7 +69,6 @@ export default class RoomJoinPage extends Component{
                 </Grid>
             </Grid>
         );
-    }
-
    
 }
+export default RoomJoinPage;
